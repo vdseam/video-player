@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		D8CC35A62CE6374100EA43D6 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = D8CC35A52CE6374100EA43D6 /* ComposableArchitecture */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		D8CC35932CE6361100EA43D6 /* video-player.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "video-player.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8CC35A62CE6374100EA43D6 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = "video-player";
 			packageProductDependencies = (
+				D8CC35A52CE6374100EA43D6 /* ComposableArchitecture */,
 			);
 			productName = "video-player";
 			productReference = D8CC35932CE6361100EA43D6 /* video-player.app */;
@@ -94,6 +100,9 @@
 			);
 			mainGroup = D8CC358A2CE6361100EA43D6;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				D8CC35A42CE6374100EA43D6 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D8CC35942CE6361100EA43D6 /* Products */;
 			projectDirPath = "";
@@ -324,6 +333,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D8CC35A42CE6374100EA43D6 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.16.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D8CC35A52CE6374100EA43D6 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D8CC35A42CE6374100EA43D6 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D8CC358B2CE6361100EA43D6 /* Project object */;
 }
