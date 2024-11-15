@@ -6,12 +6,21 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 @main
 struct video_playerApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            VideoPlayerView(
+                store: Store(
+                    initialState: VideoPlayerFeature.State(),
+                    reducer: {
+                        VideoPlayerFeature()
+                            ._printChanges()
+                    }
+                )
+            )
         }
     }
 }
