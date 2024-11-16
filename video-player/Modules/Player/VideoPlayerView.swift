@@ -95,22 +95,12 @@ struct VideoPlayerRepresentable: UIViewControllerRepresentable {
         playerLayer.videoGravity = .resizeAspectFill
         playerLayer.frame = viewController.view.bounds
         viewController.view.layer.addSublayer(playerLayer)
-
-        textLayer.frame = CGRect(x: viewController.view.bounds.midX - 100,
-                                 y: viewController.view.bounds.midY - 25,
-                                 width: 200,
-                                 height: 50)
         viewController.view.layer.addSublayer(textLayer)
 
         return viewController
     }
-
-    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        textLayer.frame = CGRect(x: uiViewController.view.bounds.midX - 100,
-                                 y: uiViewController.view.bounds.midY - 25,
-                                 width: 200,
-                                 height: 50)
-    }
+    
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
 }
 
 #Preview {

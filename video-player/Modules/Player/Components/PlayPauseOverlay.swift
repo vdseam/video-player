@@ -37,12 +37,13 @@ struct PlayPauseOverlay: View {
         .frame(maxWidth: .infinity)
         .contentShape(.rect)
         .onTapGesture {
-            setVisible(true)
-            onShowControls()
-            resetTimer()
-        }
-        .onAppear {
-            startTimer()
+            if isVisible {
+                setVisible(false)
+                onHideControls()
+            } else {
+                onShowControls()
+                resetTimer()
+            }
         }
         .onDisappear {
             timer?.invalidate()
