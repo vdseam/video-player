@@ -37,13 +37,25 @@ struct VideoPlayerView: View {
                         onHideControls: { viewStore.send(.hideControls) }
                     )
                     SeekBarView(store: store, player: player)
-                        .padding(.bottom, 16)
+                        .padding(16)
                 }
             }
             .onAppear {
+                addLoopingBehavior()
                 addPeriodicTimeObserver(viewStore: viewStore)
                 setupTextLayer()
             }
+        }
+    }
+    
+    private func addLoopingBehavior() {
+        NotificationCenter.default.addObserver(
+            forName: .AVPlayerItemDidPlayToEndTime,
+            object: player.currentItem,
+            queue: .main
+        ) { _ in
+            player.seek(to: .zero)
+            player.play()
         }
     }
 
@@ -55,7 +67,7 @@ struct VideoPlayerView: View {
             let progress = time.seconds / (player.currentItem?.duration.seconds ?? 1)
             viewStore.send(.updateProgress(progress))
 
-            let isWithinRange = progress >= 0.2 && progress <= 0.4
+            let isWithinRange = progress >= 0.3 && progress <= 0.5
             textLayer.isHidden = !isWithinRange
         }
     }

@@ -14,28 +14,57 @@ struct PlayPauseOverlay: View {
     let onShowControls: () -> Void
     let onHideControls: () -> Void
 
+    @State private var isVisible = true
+    @State private var timer: Timer? = nil
+
     var body: some View {
         VStack {
             Spacer()
-            if showControls {
-                Button(action: {
+            if isVisible {
+                Button {
                     onPlayPauseTapped()
-                }) {
+                    resetTimer()
+                } label: {
                     Image(systemName: isPlaying ? "pause.fill" : "play.fill")
                         .padding()
                         .background(Color.black.opacity(0.7))
                         .cornerRadius(8)
                         .foregroundColor(.white)
                 }
-                .transition(.opacity)
             }
             Spacer()
         }
+        .frame(maxWidth: .infinity)
+        .contentShape(.rect)
         .onTapGesture {
+            setVisible(true)
             onShowControls()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                onHideControls()
-            }
+            resetTimer()
+        }
+        .onAppear {
+            startTimer()
+        }
+        .onDisappear {
+            timer?.invalidate()
+        }
+    }
+
+    private func startTimer() {
+        timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
+            setVisible(false)
+            onHideControls()
+        }
+    }
+
+    private func resetTimer() {
+        timer?.invalidate()
+        setVisible(true)
+        startTimer()
+    }
+    
+    private func setVisible(_ visible: Bool) {
+        withAnimation(.easeOut(duration: 0.12)) {
+            isVisible = visible
         }
     }
 }
