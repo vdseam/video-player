@@ -10,6 +10,7 @@ import SwiftUI
 struct PlayPauseOverlay: View {
     let isPlaying: Bool
     let showControls: Bool
+    
     let onPlayPauseTapped: () -> Void
     let onShowControls: () -> Void
     let onHideControls: () -> Void

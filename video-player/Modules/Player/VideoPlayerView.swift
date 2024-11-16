@@ -26,6 +26,7 @@ struct VideoPlayerView: View {
 
                 VStack {
                     Spacer()
+                    
                     PlayPauseOverlay(
                         isPlaying: viewStore.isPlaying,
                         showControls: viewStore.showControls,
@@ -36,6 +37,7 @@ struct VideoPlayerView: View {
                         onShowControls: { viewStore.send(.showControls) },
                         onHideControls: { viewStore.send(.hideControls) }
                     )
+                    
                     SeekBarView(store: store, player: player)
                         .padding(16)
                 }
@@ -82,25 +84,6 @@ struct VideoPlayerView: View {
         textLayer.frame = CGRect(x: 50, y: 50, width: 200, height: 50)
         textLayer.isHidden = true
     }
-}
-
-struct VideoPlayerRepresentable: UIViewControllerRepresentable {
-    let player: AVPlayer
-    let textLayer: CATextLayer
-
-    func makeUIViewController(context: Context) -> UIViewController {
-        let viewController = UIViewController()
-
-        let playerLayer = AVPlayerLayer(player: player)
-        playerLayer.videoGravity = .resizeAspectFill
-        playerLayer.frame = viewController.view.bounds
-        viewController.view.layer.addSublayer(playerLayer)
-        viewController.view.layer.addSublayer(textLayer)
-
-        return viewController
-    }
-    
-    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
 }
 
 #Preview {
